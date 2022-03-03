@@ -17,7 +17,6 @@ export const ownerOnly = [STORE_OWNER];
 
 export function setAuthCredentials(token: string, permissions: any) {
   Cookie.set(AUTH_CRED, JSON.stringify({ token, permissions }));
-  console.log(document.cookie);
 }
 
 export function getAuthCredentials(context?: any): {

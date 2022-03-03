@@ -1,0 +1,20 @@
+{
+  "name": "pickbazar-react",
+  "version": "6.1.0",
+  "private": true,
+  "author": "RedQ, Inc.",
+  "workspaces": [
+    "admin/*"
+  ],
+  "scripts": {
+    "clean": "yarn workspaces run rimraf \"{.next,node_modules,__generated__,.cache,src/graphql/*.d.ts,src/framework/graphql/**/*.d.ts}\" && rimraf node_modules",
+    "gql-clean": "yarn workspaces run rimraf \"{__generated__,src/graphql/*.d.ts,src/framework/graphql/**/*.d.ts}\"",
+    "dev:admin-rest": "concurrently --kill-others \"yarn workspace @marvel-mock/api-rest start:dev\" \"yarn workspace @marvel/admin-rest dev\"",
+    "build:admin-rest": "yarn workspace @marvel/admin-rest build",
+    "start:admin-rest": "yarn workspace @marvel/admin-rest start"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.0",
+    "rimraf": "^3.0.2"
+  }
+}

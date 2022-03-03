@@ -2,7 +2,6 @@
   "name": "@marvel/admin-rest",
   "version": "4.2.0",
   "private": true,
-  "homepage": "http://localhost:3002/admin/",
   "scripts": {
     "dev": "next dev -p 3002",
     "build": "next build",
@@ -44,7 +43,7 @@
     "react-scroll": "^1.8.4",
     "react-select": "^5.1.0",
     "react-toastify": "^8.0.3",
-    "swiper": "^8.0.6",
+    "swiper": "^7.0.8",
     "yup": "^0.32.11"
   },
   "devDependencies": {
