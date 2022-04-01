@@ -21,8 +21,16 @@ All action must be run in pop-up(modal) menu. Adding new item must be stepped wa
 # How To Work
 1. Please, clone the public repo
 2. Then, create a local branch derived public repo master
+<<<<<<< HEAD
 3. After finishing your work, please create a review (pull request). 
 4. We will run your code and review together with you. We expect from you to  
 So, please solve the system how work and be sure any questions about JS, Node, React, Nest, Next JS.
 5. We will review with you the changes, you will explain what you did and template's general structure.
 6. Enjoy it, keep in touch.
+=======
+3. After fnishing your work, please create a review
+4. We will review with you the changes and you will explain what you did and template general structure.
+5. Enjoy it, keep in touch.
+# Deadline
+You can work until 11.00 a.m. on 10 March 2022 
+>>>>>>> ca68f6af161d809e68ae61b2b1bf915802236b6e
