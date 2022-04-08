@@ -2,7 +2,7 @@
 
 # Introduction
 
-Fastest E-commerce template built with React, NextJS, TypeScript, Apollo, React-Query, NestJs & Tailwind. Its very easy to use, you can build your schema very easily. GraphQL playground makes it’s own documentation, and for rest we use swagger, your frontend team will love using it.
+Fastest E-commerce template built with React, NextJS, TypeScript, Apollo, React-Query, NestJs & Tailwind. Its very easy to use, you can build your schema very easily. 
 
 <br>
 
