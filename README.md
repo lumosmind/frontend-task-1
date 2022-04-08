@@ -18,6 +18,7 @@ All action must be run in pop-up(modal) menu. Adding new item must be stepped wa
 10. You are free how think and design.
 11. Please complete your task during the weekends 01-04 April 2022
 12. You can contact system admin via tekin@workinself.com for your any question
+13. You will work only Rest Api Server(backend is ready nothing to for you). You will implement your work in frontend if need you can create a new api endpoint for downloading product lists.
 # How To Work
 1. Please, clone the public repo
 2. Then, create a local branch derived public repo master
