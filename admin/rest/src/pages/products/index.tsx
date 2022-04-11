@@ -4,7 +4,7 @@ import Search from "@components/common/search";
 import ProductList from "@components/product/product-list";
 import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
-import { SortOrder } from "@ts-types/generated";
+import { Product, SortOrder } from "@ts-types/generated";
 import { useState } from "react";
 import { useProductsQuery } from "@data/product/products.query";
 import { useTranslation } from "next-i18next";
@@ -14,6 +14,7 @@ import CategoryTypeFilter from "@components/product/category-type-filter";
 import cn from "classnames";
 import { ArrowDown } from "@components/icons/arrow-down";
 import { ArrowUp } from "@components/icons/arrow-up";
+import Button from "@components/ui/button";
 
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -55,6 +56,39 @@ export default function ProductsPage() {
   function handlePagination(current: any) {
     setPage(current);
   }
+
+  function downloadObjectAsJson(exportObj: Product[], exportName: string) {
+    var dataStr =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(exportObj));
+    var downloadAnchorNode = document.createElement("a");
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
+
+  const [getSelectedItems, assignGetSelectedItems] = (function () {
+    let getSelectedItemsFunction: () => Product[] = () => {
+      throw new Error("Not Implemented");
+    };
+
+    const getSelectedItems = () => getSelectedItemsFunction();
+
+    const assignGetSelectedItems = (func: () => Product[]) => {
+      getSelectedItemsFunction = func;
+    };
+
+    return [getSelectedItems, assignGetSelectedItems];
+  })();
+
+  const onExportClick = () => {
+    console.log("exporting...");
+    console.log("getSelectedItems", getSelectedItems());
+    downloadObjectAsJson(getSelectedItems(), "products");
+  };
+
   return (
     <>
       <Card className="flex flex-col mb-8">
@@ -100,12 +134,30 @@ export default function ProductsPage() {
             />
           </div>
         </div>
+
+        <div className="w-full flex flex-col md:flex-row items-center py-4 px-2 border-4 border-solid *border-red-500">
+          <Button
+            size="small"
+            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 rounded inline-flex items-center ml-3.5 hover:hover:border-current"
+            onClick={onExportClick}
+          >
+            <svg
+              className="fill-current w-4 h-4 mr-2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+            </svg>
+            <span>Export</span>
+          </Button>
+        </div>
       </Card>
       <ProductList
         products={data?.products}
         onPagination={handlePagination}
         onOrder={setOrder}
         onSort={setColumn}
+        assignGetSelectedItems={assignGetSelectedItems}
       />
     </>
   );

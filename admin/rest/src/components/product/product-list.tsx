@@ -24,6 +24,7 @@ export type IProps = {
   onPagination: (current: number) => void;
   onSort: (current: any) => void;
   onOrder: (current: string) => void;
+  assignGetSelectedItems: (func: () => Product[]) => void;
 };
 
 type SortingObjType = {
@@ -31,7 +32,13 @@ type SortingObjType = {
   column: string | null;
 };
 
-const ProductList = ({ products, onPagination, onSort, onOrder }: IProps) => {
+const ProductList = ({
+  products,
+  onPagination,
+  onSort,
+  onOrder,
+  assignGetSelectedItems,
+}: IProps) => {
   const { data, paginatorInfo } = products! ?? {};
   const router = useRouter();
   const { t } = useTranslation();
@@ -49,6 +56,16 @@ const ProductList = ({ products, onPagination, onSort, onOrder }: IProps) => {
   const [items, setItems] = useState<{ [key: number]: { selected: boolean } }>(
     Object.fromEntries(itemEntries),
   );
+
+  const getSelectedItems = () => {
+    let ids: number[] = [];
+    for (let id in items) {
+      if (items[id].selected) ids.push(Number(id));
+    }
+    return data.filter((product) => ids.includes(Number(product.id)));
+  };
+
+  assignGetSelectedItems(getSelectedItems);
 
   const onHeaderClick = (column: string | null) => ({
     onClick: () => {
