@@ -29,6 +29,10 @@ const ProductsDeleteAlertView = dynamic(
   () => import("@components/product/products-delete-alert-view"),
 );
 
+const ProductseXPORTAlertView = dynamic(
+  () => import("@components/product/products-export-alert-view"),
+);
+
 const TypeDeleteView = dynamic(
   () => import("@components/group/group-delete-view"),
 );
@@ -69,6 +73,7 @@ const ManagedModal = () => {
       {view === "DELETE_PRODUCT" && <ProductDeleteView />}
       {view === "DELETE_PRODUCTS" && <ProductsDeleteView />}
       {view === "DELETE_PRODUCTS_ALERT" && <ProductsDeleteAlertView />}
+      {view === "EXPORT_PRODUCTS_ALERT" && <ProductseXPORTAlertView />}
       {view === "DELETE_TYPE" && <TypeDeleteView />}
       {view === "DELETE_ATTRIBUTE" && <AttributeDeleteView />}
       {view === "DELETE_CATEGORY" && <CategoryDeleteView />}

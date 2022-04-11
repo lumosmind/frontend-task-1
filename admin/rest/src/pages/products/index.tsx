@@ -88,7 +88,13 @@ export default function ProductsPage() {
   const onExportClick = () => {
     console.log("exporting...");
     console.log("getSelectedItems", getSelectedItems());
-    downloadObjectAsJson(getSelectedItems(), "products");
+    const selectedItems = getSelectedItems();
+
+    if (selectedItems.length === 0) {
+      openModal("EXPORT_PRODUCTS_ALERT");
+      return;
+    }
+    downloadObjectAsJson(selectedItems, "products");
   };
 
   function onDelete() {
