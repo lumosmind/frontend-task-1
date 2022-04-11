@@ -113,6 +113,10 @@ export default function ProductsPage() {
     //send delte request to rest api
   }
 
+  function onCreate() {
+    openModal("ADD_PRODUCT");
+  }
+
   return (
     <>
       <Card className="flex flex-col mb-8">
@@ -182,6 +186,14 @@ export default function ProductsPage() {
             onClick={() => onDelete()}
           >
             <span> {t("common:text-delete")}</span>
+          </Button>
+
+          <Button
+            size="small"
+            className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded ml-4"
+            onClick={onCreate}
+          >
+            {t("common:text-add-new-product")}
           </Button>
         </div>
       </Card>

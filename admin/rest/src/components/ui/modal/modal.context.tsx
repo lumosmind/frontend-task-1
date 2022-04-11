@@ -1,6 +1,7 @@
 import React from "react";
 
 type MODAL_VIEWS =
+  | "ADD_PRODUCT"
   | "DELETE_PRODUCT"
   | "DELETE_PRODUCTS"
   | "DELETE_PRODUCTS_ALERT"

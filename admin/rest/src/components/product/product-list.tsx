@@ -52,7 +52,7 @@ const ProductList = ({
   const [allVisiblesSelected, setAllVisiblesSelected] =
     useState<boolean>(false);
 
-  const itemEntries = data.map((item) => [item.id, { selected: false }]);
+  const itemEntries = data?.map((item) => [item.id, { selected: false }]) || [];
   const [items, setItems] = useState<{ [key: number]: { selected: boolean } }>(
     Object.fromEntries(itemEntries),
   );

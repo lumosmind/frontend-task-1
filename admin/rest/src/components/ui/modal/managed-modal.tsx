@@ -17,6 +17,10 @@ const CouponDeleteView = dynamic(
   () => import("@components/coupon/coupon-delete-view"),
 );
 
+const ProductAddNewOneView = dynamic(
+  () => import("@components/product/products-add-new-one-view"),
+);
+
 const ProductDeleteView = dynamic(
   () => import("@components/product/product-delete-view"),
 );
@@ -70,6 +74,7 @@ const ManagedModal = () => {
 
   return (
     <Modal open={isOpen} onClose={closeModal}>
+      {view === "ADD_PRODUCT" && <ProductAddNewOneView />}
       {view === "DELETE_PRODUCT" && <ProductDeleteView />}
       {view === "DELETE_PRODUCTS" && <ProductsDeleteView />}
       {view === "DELETE_PRODUCTS_ALERT" && <ProductsDeleteAlertView />}
