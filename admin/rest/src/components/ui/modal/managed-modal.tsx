@@ -5,50 +5,59 @@ const TagDeleteView = dynamic(() => import("@components/tag/tag-delete-view"));
 const TaxDeleteView = dynamic(() => import("@components/tax/tax-delete-view"));
 const BanCustomerView = dynamic(() => import("@components/user/user-ban-view"));
 const UserWalletPointsAddView = dynamic(
-  () => import("@components/user/user-wallet-points-add-view")
+  () => import("@components/user/user-wallet-points-add-view"),
 );
 const ShippingDeleteView = dynamic(
-  () => import("@components/shipping/shipping-delete-view")
+  () => import("@components/shipping/shipping-delete-view"),
 );
 const CategoryDeleteView = dynamic(
-  () => import("@components/category/category-delete-view")
+  () => import("@components/category/category-delete-view"),
 );
 const CouponDeleteView = dynamic(
-  () => import("@components/coupon/coupon-delete-view")
+  () => import("@components/coupon/coupon-delete-view"),
 );
 
 const ProductDeleteView = dynamic(
-  () => import("@components/product/product-delete-view")
+  () => import("@components/product/product-delete-view"),
 );
+
+const ProductsDeleteView = dynamic(
+  () => import("@components/product/products-delete-view"),
+);
+
+const ProductsDeleteAlertView = dynamic(
+  () => import("@components/product/products-delete-alert-view"),
+);
+
 const TypeDeleteView = dynamic(
-  () => import("@components/group/group-delete-view")
+  () => import("@components/group/group-delete-view"),
 );
 const AttributeDeleteView = dynamic(
-  () => import("@components/attribute/attribute-delete-view")
+  () => import("@components/attribute/attribute-delete-view"),
 );
 
 const ApproveShopView = dynamic(
-  () => import("@components/shop/approve-shop-view")
+  () => import("@components/shop/approve-shop-view"),
 );
 const DisApproveShopView = dynamic(
-  () => import("@components/shop/disapprove-shop-view")
+  () => import("@components/shop/disapprove-shop-view"),
 );
 const RemoveStaffView = dynamic(
-  () => import("@components/shop/staff-delete-view")
+  () => import("@components/shop/staff-delete-view"),
 );
 
 const ExportImportView = dynamic(
-  () => import("@components/product/import-export-modal")
+  () => import("@components/product/import-export-modal"),
 );
 
 const AttributeExportImport = dynamic(
-  () => import("@components/attribute/attribute-import-export")
+  () => import("@components/attribute/attribute-import-export"),
 );
 const UpdateRefundConfirmationView = dynamic(
-  () => import("@components/refund/refund-confirmation-view")
+  () => import("@components/refund/refund-confirmation-view"),
 );
 const RefundImageModal = dynamic(
-  () => import("@components/refund/refund-image-modal")
+  () => import("@components/refund/refund-image-modal"),
 );
 
 const ManagedModal = () => {
@@ -58,6 +67,8 @@ const ManagedModal = () => {
   return (
     <Modal open={isOpen} onClose={closeModal}>
       {view === "DELETE_PRODUCT" && <ProductDeleteView />}
+      {view === "DELETE_PRODUCTS" && <ProductsDeleteView />}
+      {view === "DELETE_PRODUCTS_ALERT" && <ProductsDeleteAlertView />}
       {view === "DELETE_TYPE" && <TypeDeleteView />}
       {view === "DELETE_ATTRIBUTE" && <AttributeDeleteView />}
       {view === "DELETE_CATEGORY" && <CategoryDeleteView />}

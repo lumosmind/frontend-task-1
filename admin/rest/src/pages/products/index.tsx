@@ -15,8 +15,10 @@ import cn from "classnames";
 import { ArrowDown } from "@components/icons/arrow-down";
 import { ArrowUp } from "@components/icons/arrow-up";
 import Button from "@components/ui/button";
+import { useModalAction } from "@components/ui/modal/modal.context";
 
 export default function ProductsPage() {
+  const { openModal } = useModalAction();
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("");
   const [category, setCategory] = useState("");
@@ -89,6 +91,22 @@ export default function ProductsPage() {
     downloadObjectAsJson(getSelectedItems(), "products");
   };
 
+  function onDelete() {
+    //get product ids from product-list  to delete
+    const ids = getSelectedItems().map((product) => product.id);
+    console.log("ids", ids);
+
+    if (ids.length === 0) {
+      openModal("DELETE_PRODUCTS_ALERT", ids);
+      return;
+    }
+
+    // show confirmation modal
+    openModal("DELETE_PRODUCTS", ids);
+
+    //send delte request to rest api
+  }
+
   return (
     <>
       <Card className="flex flex-col mb-8">
@@ -149,6 +167,15 @@ export default function ProductsPage() {
               <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
             </svg>
             <span>Export</span>
+          </Button>
+
+          <Button
+            // className="btn btn-outline-info btn-sm"
+            size="small"
+            className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-4"
+            onClick={() => onDelete()}
+          >
+            Delete
           </Button>
         </div>
       </Card>

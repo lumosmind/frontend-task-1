@@ -96,6 +96,8 @@
   "expire-date-required": "Expire date is required",
   "delete-item": "Delete Item",
   "delete-item-confirm": "Are you sure, you want to delete?",
+  "delete-selected-items-confirm": "Are you sure, you want to delete all selected items?",
+  "delete-selected-items-info": "First select item(s) before!",
   "button-cancel": "Cancel",
   "button-delete": "Delete",
   "block-customer": "Block Customer",
