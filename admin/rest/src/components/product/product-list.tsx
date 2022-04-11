@@ -15,8 +15,9 @@ import {
   SortOrder,
 } from "@ts-types/generated";
 import { useIsRTL } from "@utils/locals";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
+import Checkbox from "@components/ui/checkbox/checkbox";
 
 export type IProps = {
   products?: ProductPaginator;
@@ -41,10 +42,20 @@ const ProductList = ({ products, onPagination, onSort, onOrder }: IProps) => {
     column: null,
   });
 
+  const [allVisiblesSelected, setAllVisiblesSelected] =
+    useState<boolean>(false);
+
+  const itemEntries = data.map((item) => [item.id, { selected: false }]);
+  const [items, setItems] = useState<{ [key: number]: { selected: boolean } }>(
+    Object.fromEntries(itemEntries),
+  );
+
   const onHeaderClick = (column: string | null) => ({
     onClick: () => {
       onSort((currentSortDirection: SortOrder) =>
-        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+        currentSortDirection === SortOrder.Desc
+          ? SortOrder.Asc
+          : SortOrder.Desc,
       );
       onOrder(column!);
 
@@ -56,7 +67,61 @@ const ProductList = ({ products, onPagination, onSort, onOrder }: IProps) => {
     },
   });
 
+  const onSelectAll = (e: ChangeEvent<HTMLInputElement>) => {
+    const { checked } = e.target;
+    console.log("checked:", checked);
+
+    const itemsCopy = { ...items };
+    for (let id in items) {
+      itemsCopy[id].selected = checked;
+    }
+
+    setItems(itemsCopy);
+
+    setAllVisiblesSelected(checked);
+  };
+
+  const onSelectItem = (e: ChangeEvent<HTMLInputElement>, id: number) => {
+    const { name, value, checked } = e.target;
+    console.log({ name, value, checked });
+
+    const itemsCopy = { ...items };
+    itemsCopy[id].selected = checked;
+    setItems(itemsCopy);
+
+    if (!checked) setAllVisiblesSelected(false);
+  };
+
   let columns = [
+    {
+      title: (
+        <Checkbox
+          name="selectAllProducts"
+          checked={allVisiblesSelected}
+          onChange={(e) => onSelectAll(e)}
+        />
+      ),
+      dataIndex: "slug",
+      key: "check",
+      align: alignLeft,
+      width: 30,
+      // render: (_: any, { name, id }: { name: string; id: number }) => {
+      render: (_: any, record: Product) => {
+        const id = +record.id;
+        return (
+          <Checkbox
+            // value={id}
+            value={id}
+            // name={name}
+            name={record.name}
+            checked={items?.[id]?.selected}
+            onChange={(e) => {
+              onSelectItem(e, id);
+            }}
+          />
+        );
+      },
+    },
     {
       title: t("table:table-item-image"),
       dataIndex: "image",
