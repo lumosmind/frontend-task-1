@@ -172,7 +172,7 @@ export default function ProductsPage() {
             >
               <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
             </svg>
-            <span>Export</span>
+            <span> {t("common:text-export")}</span>
           </Button>
 
           <Button
@@ -181,7 +181,7 @@ export default function ProductsPage() {
             className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-4"
             onClick={() => onDelete()}
           >
-            Delete
+            <span> {t("common:text-delete")}</span>
           </Button>
         </div>
       </Card>
